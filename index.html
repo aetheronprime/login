@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="3;url=https://www.google.com">
-    <title>Thank You</title>
+    <title>Member Login</title>
     <style>
         * {
             margin: 0;
@@ -19,87 +18,259 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
         }
 
-        .container {
+        .login-container {
             background: white;
-            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 14px 28px rgba(0,0,0,0.1);
-            max-width: 500px;
-        }
-
-        .success-icon {
-            font-size: 64px;
-            color: #6e8efb;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        p {
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-
-        .redirect {
-            font-size: 14px;
-            color: #999;
-            margin-top: 20px;
-        }
-
-        .loader {
-            height: 4px;
-            width: 100%;
-            background-color: #f1f1f1;
-            margin: 30px 0 10px;
-            position: relative;
+            width: 400px;
             overflow: hidden;
         }
 
-        .loader:after {
-            content: '';
-            position: absolute;
-            left: -50%;
-            height: 4px;
-            width: 40%;
-            background-color: #6e8efb;
-            animation: loading 2s linear infinite;
+        .header {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
         }
 
-        @keyframes loading {
-            from {left: -50%;}
-            to {left: 100%;}
+        .header h2 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .login-form {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border 0.3s;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            border-color: #6e8efb;
+            outline: none;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember input {
+            margin-right: 5px;
+        }
+
+        .forgot a {
+            color: #6e8efb;
+            text-decoration: none;
+        }
+
+        .forgot a:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(110, 142, 251, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .signup {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .signup a {
+            color: #6e8efb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .signup a:hover {
+            text-decoration: underline;
+        }
+
+        .or-divider {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .or-divider:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #eee;
+            z-index: 1;
+        }
+
+        .or-divider span {
+            background: white;
+            padding: 0 15px;
+            position: relative;
+            z-index: 2;
+            color: #999;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            transition: background 0.3s;
+        }
+
+        .social-btn:hover {
+            background: #eaeaea;
+        }
+
+        .social-btn i {
+            font-size: 18px;
+        }
+
+        .fa-facebook {
+            color: #3b5998;
+        }
+
+        .fa-google {
+            color: #db4437;
+        }
+
+        .fa-twitter {
+            color: #1da1f2;
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <div class="success-icon">
-            <i class="fas fa-check-circle"></i>
+    <div class="login-container">
+        <div class="header">
+            <h2>Welcome Back</h2>
+            <p>Sign in to continue to your account</p>
         </div>
-        <h1>Login Successful!</h1>
-        <p>Thank you for logging in. You will be redirected to your account dashboard shortly.</p>
-        <div class="loader"></div>
-        <p class="redirect">Redirecting you in a few seconds...</p>
+        <div class="login-form">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="remember-forgot">
+                    <div class="remember">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <div class="forgot">
+                        <a href="#">Forgot password?</a>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Sign In</button>
+                <div class="or-divider">
+                    <span>Or</span>
+                </div>
+                <div class="social-login">
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="social-btn">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+                <div class="signup">
+                    Don't have an account? <a href="#">Sign Up</a>
+                </div>
+            </form>
+        </div>
     </div>
-    
+
     <script>
-        // Count down from 3
-        let seconds = 3;
-        const updateCountdown = () => {
-            if (seconds > 0) {
-                seconds--;
-                setTimeout(updateCountdown, 1000);
-            }
-        };
-        updateCountdown();
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get the form values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            
+            // For demonstration purposes: log to console
+            console.log("Login attempted with:", {
+                username,
+                password,
+                remember
+            });
+            
+            // You could send this data to a collection service in a real phishing scenario
+            // For demo purposes, just redirect to thanks.html
+            window.location.href = 'thanks.html';
+        });
     </script>
 </body>
 </html>
