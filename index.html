@@ -3,30 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Login</title>
+    <title>Secure Member Portal</title>
     <style>
+        /* Modern Dark Theme Variables */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --accent-color: #6c5ce7;
+            --accent-hover: #5649c0;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --input-bg: #2d2d2d;
+            --input-border: #3d3d3d;
+            --success-color: #00b894;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: #f4f4f4;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            background-image: radial-gradient(circle at top right, rgba(121, 68, 154, 0.13), transparent),
+                             radial-gradient(circle at 20% 80%, rgba(41, 196, 255, 0.13), transparent);
         }
         
         .container {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
             padding: 40px;
-            width: 400px;
+            width: 380px;
             max-width: 90%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--accent-color), #a29bfe);
         }
         
         .login-page {
@@ -41,43 +69,69 @@
         h2 {
             text-align: center;
             margin-bottom: 30px;
-            color: #333;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 26px;
+            letter-spacing: 0.5px;
         }
         
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            position: relative;
         }
         
         label {
             display: block;
             margin-bottom: 8px;
-            font-weight: bold;
-            color: #555;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 14px;
+            letter-spacing: 0.3px;
         }
         
         input[type="text"],
         input[type="password"] {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
+            padding: 12px 15px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 6px;
+            font-size: 15px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
         }
         
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #4285f4;
+            padding: 14px;
+            background-color: var(--accent-color);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 16px;
+            font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            margin-top: 5px;
         }
         
         button:hover {
-            background-color: #357ae8;
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+        }
+        
+        button:active {
+            transform: translateY(0);
+            box-shadow: none;
         }
         
         .remember {
@@ -88,32 +142,69 @@
         
         .remember input {
             margin-right: 10px;
+            accent-color: var(--accent-color);
+        }
+        
+        .remember label {
+            margin-bottom: 0;
+            color: var(--text-secondary);
         }
         
         .links {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .links a {
-            color: #4285f4;
+            color: var(--accent-color);
             text-decoration: none;
             margin: 0 10px;
+            font-size: 14px;
+            transition: color 0.3s;
         }
         
         .links a:hover {
-            text-decoration: underline;
+            color: var(--text-primary);
         }
         
         .success-message {
             font-size: 24px;
-            color: #4caf50;
+            color: var(--success-color);
             margin-bottom: 20px;
+            font-weight: 600;
         }
         
         .redirect-message {
-            color: #666;
-            margin-bottom: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+        
+        .loader {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: var(--accent-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .brand {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(to right, #6c5ce7, #a29bfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -121,32 +212,33 @@
     <div class="container">
         <!-- Login Page -->
         <div id="loginPage" class="login-page">
+            <div class="brand">SECURE<span style="font-weight: 300;">PORTAL</span></div>
             <h2>Member Login</h2>
             <form id="loginForm">
                 <div class="input-group">
                     <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
+                    <input type="text" id="username" name="username" placeholder="Enter your username" required>
                 </div>
                 <div class="input-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 <div class="remember">
                     <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Remember me</label>
                 </div>
-                <button type="submit">Login</button>
+                <button type="submit">Sign In</button>
                 <div class="links">
                     <a href="#">Forgot Password?</a>
-                    <a href="#">Sign Up</a>
+                    <a href="#">Create Account</a>
                 </div>
             </form>
         </div>
         
         <!-- Thanks Page -->
         <div id="thanksPage" class="thanks-page">
-            <h2 class="success-message">Thank You!</h2>
-            <p class="redirect-message">Your login was successful. You will be redirected to your account shortly...</p>
+            <h2 class="success-message">Login Successful</h2>
+            <p class="redirect-message">Authenticating your session. You will be redirected to your dashboard momentarily...</p>
             <div class="loader"></div>
         </div>
     </div>
